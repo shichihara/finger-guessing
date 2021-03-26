@@ -24,6 +24,7 @@ export default class Chat extends Component {
       writeError: null,
     };
     this.handleReset = this.handleReset.bind(this);
+    this.handleForceReset = this.handleForceReset.bind(this);
     this.chooseHand = [
       this.onRadioPress.bind(this, 'paper'),
       this.onRadioPress.bind(this, 'rock'),
@@ -32,6 +33,7 @@ export default class Chat extends Component {
   }
 
   async componentDidMount() {
+    this.setupBeforeUnloadListener();
     this.setState({ readError: null});
     // const chatArea = this.myRef.current;
     try {
@@ -48,10 +50,28 @@ export default class Chat extends Component {
     }
   }
 
-  handleChange(event) {
-    this.setState({
-      content: event.target.value
-    });
+  componentWillUnmount() {
+    window.removeEventListener("beforeunload", this.handleForceReset);
+  }
+
+  async handleForceReset(ev) {
+      ev.preventDefault();
+      if (this.state.player1 !== '' || this.state.player2 !== '') {
+        try {
+          db.collection('game').doc('guess').update({
+            player1: '',
+            player2: '',
+            winner: ''
+          });
+        } catch (error) {
+          this.setState({ readError: error.message});
+        }
+      }
+  }
+    
+
+  setupBeforeUnloadListener = () => {
+    window.addEventListener("beforeunload", this.handleForceReset);
   }
 
   async handleReset(event) {
@@ -144,7 +164,6 @@ export default class Chat extends Component {
           winner: winner,
         });
       }
-      console.log(winner);
       this.setState({
         player1: data.player1,
         player2: data.player2,
@@ -181,8 +200,6 @@ export default class Chat extends Component {
   }
 
   async onRadioPress(value) {
-    console.log(value);
-    console.log(this.state.role);
     let role = '';
     if (this.state.role === 'player1') {
       role = this.state.role;

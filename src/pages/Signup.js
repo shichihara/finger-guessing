@@ -37,18 +37,37 @@ export default class SignUp extends Component {
         <form className="mt-5 py-5 px-5" onSubmit={this.handleSubmit}>
           <h1>
             Sign Up to
-          <Link className="title ml-2" to="/">Finger-Guessing</Link>
+            <Link className="title ml-2" to="/">
+              Finger-Guessing
+            </Link>
           </h1>
-          <p className="lead">Fill in the form below to create an account.</p>
+          <p className="lead">
+            Fill in the form below to create an account.
+          </p>
           <div className="form-group">
-            <input className="form-control" placeholder="Email" name="email" type="email" onChange={this.handleChange} value={this.state.email}></input>
+            <input className="form-control"
+              placeholder="Email"
+              name="email"
+              type="email"
+              onChange={this.handleChange}
+              value={this.state.email}
+            />
           </div>
           <div className="form-group">
-            <input className="form-control" placeholder="Password" name="password" onChange={this.handleChange} value={this.state.password} type="password"></input>
+            <input className="form-control"
+              placeholder="Password"
+              name="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+              type="password"
+            />
           </div>
           <div className="form-group">
             {this.state.error ? <p className="text-danger">{this.state.error}</p> : null}
-            <button className="btn btn-primary px-5" type="submit">Sign up</button>
+            <button className="btn btn-primary px-5"
+              type="submit">
+              Sign up
+            </button>
           </div>
           <hr></hr>
           <p>Already have an account? <Link to="/login">Login</Link></p>

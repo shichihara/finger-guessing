@@ -36,8 +36,7 @@ export default class Login extends Component {
         <form
           className="mt-5 py-5 px-5"
           autoComplete="off"
-          onSubmit={this.handleSubmit}
-        >
+          onSubmit={this.handleSubmit}>
           <h1>
             Login to
             <Link className="title ml-2" to="/">
@@ -71,14 +70,15 @@ export default class Login extends Component {
             {this.state.error ? (
               <p className="text-danger">{this.state.error}</p>
             ) : null}
-            <button className="btn btn-primary px-5" type="submit">Login</button>
+            <button className="btn btn-primary px-5" type="submit">
+              Login
+            </button>
           </div>
           <hr />
           <p>
             Don't have an account? <Link to="/signup">Sign up</Link>
           </p>
         </form>
-
       </div>
     );
   }
