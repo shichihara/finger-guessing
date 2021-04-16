@@ -3,13 +3,13 @@ import "firebase/auth";
 import "firebase/database";
 import 'firebase/firestore';
 var config = {
-  apiKey: "AIzaSyAHYCLV-AnAFMLUJMSWup_J7YbmRJo-px4",
-  authDomain: "finger-guess.firebaseapp.com",
-  projectId: "finger-guess",
-  storageBucket: "finger-guess.appspot.com",
-  messagingSenderId: "1038015472766",
-  appId: "1:1038015472766:web:6b8a2464533ce75fe6642f",
-  measurementId: "G-712J1S0L3V"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain:  process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId:  process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket:  process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId:  process.env.REACT_APP_FIREBASE_MESSAGEING_SENDER_ID,
+  appId:  process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId:  process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 firebase.initializeApp(config);
